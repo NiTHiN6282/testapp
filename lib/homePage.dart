@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:testapp/LoginPage.dart';
 import 'package:testapp/main.dart';
 
@@ -35,7 +36,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         actions: [
           ElevatedButton.icon(
-            onPressed: () {
+            onPressed: () async {
+              await GoogleSignIn().signOut();
               FirebaseAuth.instance.signOut().then(
                 (value) {
                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
